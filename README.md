@@ -12,14 +12,15 @@ Blender addon - Link references models at real world scale
 Instant link some real world scale references for your modelisations.
 Exemples : humans, computer, pen etc...
 
-The import button create a new collection in wich it link all the reference model from a file.
+The _Import references_ button create a new collection in wich it link references models from a file.
 
 ![scale_ref_example](https://github.com/Pullusb/images_repo/raw/master/RSR_models_increasing.png)
 
-These models can be customized in the blend file located in the addon folder/source (to rea)
-This blend file contains another addon (launch as autorun at open) that provide some tools to perpare your model.
+Once you have finish using it, just click _Delete references_.
 
-Once you have finish, just click delete reference and voilà.
+These models can be customized in the blend file located in the addon-folder > source (click on _open reference folder_ to access the file)
+This blend file contains an addon-scripts (launch as autorun at open) that provide some tools to prepare your model.
+
 
 ### Where ?
 Panel in sidebar : 3D view > sidebar 'N' > View > Real scale ref
@@ -49,7 +50,7 @@ I tried to add some generic usefull models, but if you made or found a CC0 model
 ## Todo:
 - make a demo
 - add more reference models (some bigger model like building, car/truck and such)
-
+- better tools to prepare model : delete material, check rotation, check scale factor etc...
 
 ### Ideas considered :
 - Maybe hide the collection from the user to avoid mistake with renaming or moving (dont like of hiding things in data though...)
