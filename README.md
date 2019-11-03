@@ -7,7 +7,24 @@ Blender addon - Link references models at real world scale
 
 ---  
 
-## Why ?
+## Description
+
+Instant link some real world scale references for your modelisations.
+Exemples : humans, computer, pen etc...
+
+The import button create a new collection in wich it link all the reference model from a file.
+
+![scale_ref_example](https://github.com/Pullusb/images_repo/raw/master/RSR_models_increasing.png)
+
+These models can be customized in the blend file located in the addon folder/source (to rea)
+This blend file contains another addon (launch as autorun at open) that provide some tools to perpare your model.
+
+Once you have finish, just click delete reference and voilà.
+
+### Where ?
+Panel in sidebar : 3D view > sidebar 'N' > View > Real scale ref
+
+### Why ?
 
 When starting modelisation in blender we don't care much about making the model to scale.
 Figuring out the real size needs some extra work (searching for approximate dimensions on the net, or measuring things IRL)
@@ -20,20 +37,9 @@ And rescaling can cause problem with some modifiers !
 
 **The ideas is for you to have some visual _sensitive_ references to better fit your model in real world scale without worrying too much about numbers.**
 
-### Where ?
-Panel in sidebar : 3D view > sidebar 'N' > View > Real scale ref
 
 
-## Description
-
-Instant link some real world scale references for your modelisations.
-Exemples : humans, computer, pen etc...
-
-The import button create a new collection in wich it link all the reference model from a file.
-These models can be customized in the blend file located in the addon folder/source (to rea)
-This blend file contains another addon (launch as autorun at open) that provide some tools to perpare your model.
-
-Once you have finish, just click delete reference and voilà.
+### Note
 
 I tried to add some generic usefull models, but if you made or found a CC0 model to scale that you think might be good to add in the references library send me a link or something (maybe open an issue to discuss it)
 
