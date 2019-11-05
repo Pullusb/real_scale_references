@@ -30,8 +30,8 @@ Panel in sidebar : 3D view > sidebar 'N' > View > Real scale ref
 When starting modelisation in blender we don't care much about making the model to scale.
 Figuring out the real size needs some extra work (searching for approximate dimensions on the net, or measuring things IRL)
 
-So often we skip this step (Proof : Extremely few models on BlendSwap are on scale... wich is sad)
-To make thinks worse, it's very difficult to appreciate the real size of the default cube alone in the scene (it's actually big, 2 meters high !)
+So often we skip this step (Proof : Extremely few models on BlendSwap are on scale... which is sad)
+To make things worse, it's very difficult to appreciate the real size of the default cube alone in the scene (it's actually big, 2 meters high !)
 
 But later it's very tedious when you want to combine multiple models in a new scene.
 And rescaling can cause problem with some modifiers !
