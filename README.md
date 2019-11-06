@@ -5,6 +5,7 @@ Blender addon - Link references models at real world scale
 
 <!-- ### [Demo Youtube](https://youtu.be/Rs4y7DeHkp8) -->
 Want to support me? [Check out how](http://www.samuelbernou.fr/donate)
+
 ---  
 
 ## Description
