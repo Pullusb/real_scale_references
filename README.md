@@ -61,6 +61,10 @@ I tried to add some generic usefull models, but if you made or found a CC0 model
 ---
 
 ## Changelog:
+  v1.1.0 - 2019-11-25:
+  - New option : Toggle X-ray (In front properties) on references
+  - Fix : Linked collection dont become the active one
+  - Fix : If objects or collection have been misplaced by the user in the 'scale_ref' folder, moved in a 'user_assets' collection.
 
   v1.0.0 - 2019-11-03:
   - New option to toggle visibility and lock object

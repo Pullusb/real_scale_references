@@ -16,7 +16,7 @@ bl_info = {
     "author" : "Samuel Bernou",
     "description" : "Link some references models at real world scale",
     "blender" : (2, 80, 0),
-    "version" : (1, 0, 0),
+    "version" : (1, 1, 0),
     "location" : "3D view > sidebar 'N' > View > Real scale ref",
     "wiki_url": "https://github.com/Pullusb/real_scale_references",
     "warning" : "",
@@ -99,7 +99,7 @@ def add_gyzmo_manipulator():
 def create_collection(col_name, parent_collection='', in_active=False):
     '''
     Get a collection name (str), an optional parent collection (str or collection_type)
-    If no parent_collection and 'in_active' is True : Created in active colleciton
+    If no parent_collection and 'in_active' is True : Created in active collection
     If no active collection or 'in_active' is False : Created in master collection
     Return created collection object
     '''
@@ -140,16 +140,28 @@ def is_in_collection(o, col_name):
 def remove_scale_references():
     #remove
     cur_ref_col = bpy.data.collections.get('Real_scale_references')
-    if cur_ref_col: bpy.data.collections.remove(cur_ref_col)
+    if cur_ref_col:bpy.data.collections.remove(cur_ref_col)#the hidden collection instanciated on the empty
 
     empty_ref = bpy.data.objects.get('Real_scale_references')
-    if empty_ref: bpy.data.objects.remove(empty_ref)
+    if empty_ref: bpy.data.objects.remove(empty_ref)#remove the empty
 
     gyzmo = bpy.data.objects.get('references_gyzmo')
-    if gyzmo: bpy.data.objects.remove(gyzmo)
+    if gyzmo: bpy.data.objects.remove(gyzmo)#remove the gyzmo object
 
     ref_pack = bpy.data.collections.get('Scale_references')
-    if ref_pack: bpy.data.collections.remove(ref_pack)
+    if ref_pack:
+        ## move objects and subcollections created by user in another collection.
+        if ref_pack.children or ref_pack.objects:
+            usercol = bpy.data.collections.get('User_assets')
+            if not usercol:usercol = create_collection('User_assets')
+        for ob in ref_pack.objects:
+            usercol.objects.link(ob)
+            ref_pack.objects.unlink(ob)
+        for child in ref_pack.children:
+            usercol.children.link(child)
+            ref_pack.children.unlink(child)
+
+        bpy.data.collections.remove(ref_pack)#remove the container collection
 
 
 class RSR_OT_set_collection_wire(bpy.types.Operator):
@@ -170,6 +182,27 @@ class RSR_OT_set_collection_wire(bpy.types.Operator):
         mode = 'WIRE' if refcol.objects[0].display_type != 'WIRE' else 'TEXTURED'#SOLID
         for o in refcol.objects:
             o.display_type = mode
+
+        return {"FINISHED"}
+
+class RSR_OT_set_collection_in_front(bpy.types.Operator):
+    bl_idname = "realscaleref.set_collec_in_front"
+    bl_label = "X-ray toggle"
+    bl_description = "Switch display mode of all objects in collection to X-ray (Always In front)"
+    bl_options = {"REGISTER"}
+
+    collec_name : bpy.props.StringProperty()
+
+    def execute(self, context):
+        refcol = bpy.data.collections[self.collec_name]
+        if not refcol:
+            mess = f'Collection "{self.collec_name}" not found'
+            self.report({'ERROR'}, mess)
+            return {"CANCELLED"}
+
+        mode = not refcol.objects[0].show_in_front
+        for o in refcol.objects:
+            o.show_in_front = mode
 
         return {"FINISHED"}
 
@@ -208,6 +241,7 @@ class RSR_OT_import_references(bpy.types.Operator):
 
     def execute(self, context):
         # link references in a specific collection with an empty
+        current_active = context.view_layer.active_layer_collection
         script_file = os.path.realpath(__file__)
         directory = dirname(script_file)
         # directory = r'G:\WORKS\Prog\blender\SB_Blender_addons\real_scale_reference\real_scale_reference'
@@ -248,7 +282,8 @@ class RSR_OT_import_references(bpy.types.Operator):
                 lib_obj.lock_location[1] = lib_obj.lock_location[2] = True
                 lib_obj.parent = gyzmo
                 lib_obj.location = (0,0,0)
-                lib_obj.empty_display_size = 0.3
+                lib_obj.empty_display_size = 0.05#0.3
+                lib_obj.select_set(False)
                 print("References setup Done.")
 
             else:
@@ -269,6 +304,9 @@ class RSR_OT_import_references(bpy.types.Operator):
             # visibility_per_height(self, context)
         else:
             print('Problem while trying to read library')
+
+        context.view_layer.objects.active = gyzmo
+        context.view_layer.active_layer_collection = current_active#restore active col
 
         return {"FINISHED"}
 
@@ -337,6 +375,7 @@ class RSR_PT_scale_ref_panel(bpy.types.Panel):
                     layout.prop(bpy.data.objects['Real_scale_references'], 'hide_viewport', text='Hide references')
                     layout.prop(bpy.data.objects['Real_scale_references'], 'hide_select', text='Lock references')
                 layout.operator('realscaleref.set_collec_wire', text='References wire toggle').collec_name = 'RSR_references'
+                layout.operator('realscaleref.set_collec_in_front', text='References X-ray toggle').collec_name = 'RSR_references'
                 # layout.operator('realscaleref.set_collec_vp_visibility', text='References hide toggle').collec_name = 'RSR_references'
 
             if bpy.data.collections.get('RSR_auto_mesures') and len(bpy.data.collections.get('RSR_auto_mesures').objects):
@@ -364,6 +403,7 @@ RSR_OT_delete_references,
 RSR_OT_open_reference_folder,
 RSR_OT_set_collection_wire,
 RSR_OT_set_collection_visibility,
+RSR_OT_set_collection_in_front,
 RSR_PT_scale_ref_panel,
 )
 
