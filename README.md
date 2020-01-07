@@ -3,8 +3,9 @@ Blender addon - Link references models at real world scale
 
 **[Download latest](https://github.com/Pullusb/real_scale_references/archive/master.zip)**
 
-<!-- ### [Demo Youtube](https://youtu.be/Rs4y7DeHkp8) -->
-Want to support me? [Check out how](http://www.samuelbernou.fr/donate)
+### [Demo Youtube](https://youtu.be/-73m53QNolA)
+
+Want to support me? [Check out this page](http://www.samuelbernou.fr/donate)
 
 ---  
 
@@ -55,7 +56,7 @@ I tried to add some generic usefull models, but if you made or found a CC0 model
 
 ### Ideas considered :
 - Maybe hide the collection from the user to avoid mistake with renaming or moving (dont like of hiding things in data though...)
-- Listing multiple blend folder (to allow multiple template), in this case list the collection name accordingg to blend's name
+- Listing multiple blend folder (to allow multiple reference template), in this case list the collection name accordingg to blend's name
 
 
 ---
