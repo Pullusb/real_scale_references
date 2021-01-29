@@ -12,9 +12,9 @@ Want to support me? [Check out this page](http://www.samuelbernou.fr/donate)
 ## Description
 
 Instant link some real world scale references for your modelisations.
-Exemples : humans, computer, pen etc...
+Examples : humans, computer, pen etc...
 
-The _Import references_ button create a new collection in wich it link references models from a file.
+The _Import references_ button create a new collection in which it link references models from a file.
 
 ![scale_ref_example](https://github.com/Pullusb/images_repo/raw/master/RSR_models_increasing.png)
 
@@ -56,7 +56,7 @@ I tried to add some generic usefull models, but if you made or found a CC0 model
 
 ### Ideas considered :
 - Maybe hide the collection from the user to avoid mistake with renaming or moving (dont like of hiding things in data though...)
-- Listing multiple blend folder (to allow multiple reference template), in this case list the collection name accordingg to blend's name
+- Listing multiple blend folder (to allow multiple reference template), in this case list the collection name according to blend's name
 
 
 ---
@@ -64,7 +64,7 @@ I tried to add some generic usefull models, but if you made or found a CC0 model
 ## Changelog:
   v1.1.0 - 2019-11-25:
   - New option : Toggle X-ray (In front properties) on references
-  - Fix : Linked collection dont become the active one
+  - Fix : Linked collection don't become the active one
   - Fix : If objects or collection have been misplaced by the user in the 'scale_ref' folder, moved in a 'user_assets' collection.
 
   v1.0.0 - 2019-11-03:
