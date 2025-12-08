@@ -16,7 +16,7 @@ bl_info = {
     "author" : "Samuel Bernou",
     "description" : "Link some references models at real world scale",
     "blender" : (2, 80, 0),
-    "version" : (1, 1, 0),
+    "version" : (1, 1, 1),
     "location" : "3D view > sidebar 'N' > View > Real scale ref",
     "wiki_url": "https://github.com/Pullusb/real_scale_references",
     "warning" : "",
@@ -267,10 +267,10 @@ class RSR_OT_import_references(bpy.types.Operator):
         #add dyzmo
         gyzmo = add_gyzmo_manipulator()
 
-        #filepath not needed (provide filename as in one example but works without it...)
-        ret = bpy.ops.wm.link(filepath=filename, directory=collections_path, filename=collec_name, files=[],
-        filter_blender=True, filter_backup=False, filter_image=False, filter_movie=False, filter_python=False, filter_font=False, filter_sound=False, filter_text=False, filter_btx=False, filter_collada=False, filter_alembic=False, filter_folder=True, filter_blenlib=True,
-        filemode=1, relative_path=True, display_type='DEFAULT', sort_method='FILE_SORT_ALPHA', link=True, autoselect=False, active_collection=True, instance_collections=True)
+        # Filepath not needed (provide filename as in one example but works without it...)
+        ret = bpy.ops.wm.link(
+            filepath=filename, directory=collections_path, filename=collec_name, files=[],
+            display_type='DEFAULT', sort_method='FILE_SORT_ALPHA', link=True, autoselect=False, active_collection=True, instance_collections=True)
 
         if 'FINISHED' in ret:
             #lib = bpy.data.collections['Real_scale_references']
